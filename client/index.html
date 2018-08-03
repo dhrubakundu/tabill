@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to TAFSU, Kolkata Zone</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container" ng-controller="empController">
+    TAFSU Kolkata Username <input type="text" ng-model="nm" >
+    TAFSU Kolkata Password <input type="password" ng-model="pass" ng-minlength="8">
+    <button type="submit" ng-click="getPass(nm,pass)">Check Password</button>
+  
+    <div ng-repeat="pbs in pbss" class="row">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active">
+                            <a href="#/tabill/{{nm}}/list" class="btn btn-info">list Bills</a>
+                    </li>
+                    <li role="presentation" class="active">
+                            
+                            <a href="#/tabill/{{nm}}/add" class="btn btn-info">Add Bill</a>
+                </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Ta Bill</h3>
+        </div>
+        <div ng-view></div>
+        <footer class="footer well well-sm">
+            <p>DK</p>
+        </footer>
+    </div>
+</div>  
+
+<script language="Javascript" type="text/javascript">
+
+    function onlyAlphabets(e, t) {
+        try {
+            if (window.event) {
+                var charCode = window.event.keyCode;
+            }
+            else if (e) {
+                var charCode = e.which;
+            }
+            else { return true; }
+            if ((charCode > 0 && charCode < 32) ||(charCode > 64 && charCode < 91))
+                return true;
+            else
+                return false;
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+    
+    function checkLength(el) {
+        if (el.value.length < 5) {
+        alert("length must be MINIMUM 5 characters");
+        }
+    }
+</script>
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="angular.min.js"></script>
+  <script src="angular-route.min.js"></script>
+  <script src="app.js"></script>
+  <script src="controllers/controllers.js"></script>
+</body>
+</html>

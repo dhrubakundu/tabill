@@ -1,0 +1,30 @@
+<div class="panel panel-default" ng-init="getBill()">
+    <div class="panel-heading">
+        <p class="panel-title">Tabill List</p>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thread>
+                <tr>
+                    <th>User Name</th>
+                    <th>Bill Date</th>
+                    <th>Journey Purpose</th>
+                    <th>Actions</th>
+                </tr>
+            </thread>
+            <tbody>
+                <tr ng-repeat="bill in subs">
+                    <td>{{bill.uname}}</td>
+                    <td>{{bill.dt}}</td>
+                    <td>{{bill.pur}}</td>
+                    <td>
+                        <a href="#/tabill/{{bill._id}}/details" class="btn btn-info">Show Biii</a>
+                        <a ng-click="deleteTabill(bill._id)" class="btn btn-danger">Delete Bill</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

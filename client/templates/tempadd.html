@@ -1,0 +1,340 @@
+<div class="panel panel-default" ng-init="getUser()">
+        <div class="panel-heading">
+            <p class="panel-title">Add New Employee</p>
+        </div>
+        <form ng-submit="addBill()">
+                <div ng-repeat="bil in susr" class="panel-body">
+                        <div class="form-group">
+                                <table border=3 >
+                                        <tr>
+                                                <th>
+                                                        <label for="uname">User Name:</label>
+                                                </th>
+                                                <th>
+                                                        <input type="text" class="form-control"  id="uname" ng-model="bill.uname" ng-value="bil.uname" ng-readonly="true">
+                                                </th>
+                                        </tr>
+                                        <tr>
+                                                <th>
+                                                        <label for="dt">Bill Date:</label>
+                                                </th>
+                                                <th>
+                                                        <input type="date" class="form-control"  id="dt" ng-model="bill.dt" required>
+                                                </th>
+                                        </tr>
+                                        <tr>
+                                                <th>
+                                                        <label for="pur">Purpose of Journey:</label>
+                                                </th>
+                                                <th>
+                                                        <input type="text" class="form-control" id="pur" ng-model="bill.pur" required>
+                                                </th>
+                                                </tr>
+                                </table>
+                                <table border=3>
+                                        <tr>
+                                                <th colspan=2>Departure</th>
+                                                <th colspan=2>Arrival</th>
+                                                <th rowspan=2>Mode of TRavel</th>
+                                                <th >Fare Paid</th>
+                                                <th rowspan=2>Distance in KM</th>
+                                                <th colspan=2>Travel Time</th>
+                                                <th colspan=2>Duration of Halt</th>
+                                        </tr>
+                                        <tr>
+                                                <th>From Date/time</th>
+                                                <th>From</th>
+                                                <th>To Date/Time</th>
+                                                <th>To</th>
+                                                <th>Rupees</th>
+                                                <th>Hrs</th>
+                                                <th>Min</th>
+                                                <th>Days</th>
+                                                <th>Hrs</th>
+                                        </tr>
+                                        <div ng-repeat= "i in 0 .. 9">
+                                                <tr>
+                                                        <td><input type="date" class="form-control" id="fdt1" ng-model="bill.fdt[i]">
+                                                        <input type="time" class="form-control" id="ftm1" ng-model="bill.ftm[i]"></td>
+                                                        <td><input type="text" class="form-control"  id="f1" ng-model="bill.f[i]"></td>
+                                                        <td><input type="date" class="form-control"  id="tdt1" ng-model="bill.tdt[i]">
+                                                        <input type="time" class="form-control" id="ttm1" ng-model="bill.ttm[i]"></td>
+                                                        <td><input type="text" class="form-control"  id="t1" ng-model="bill.t1"></td>
+                                                        <td>
+                                                                <select  id="mot1" ng-model="bill.mot1" >
+                                                                        <option value="0"></option>
+                                                                        <option value="1">Rickshaw</option> 
+                                                                        <option value="2">Auto</option>
+                                                                        <option value="3">Bus</option>
+                                                                        <option value="4">Train</option>
+                                                                        <option value="5">Metro</option>
+                                                                        <option value="6">Vessel</option>
+                                                                        <option value="7">Taxi</option>
+                                                                        <option value="8">Air</option>
+                                                                        <option value="9">Other</option>
+                                                                </select>
+                                                        </td>
+                                                        <td><input type="text" class="form-control"  id="fp1" ng-model="bill.fp1" ></td>
+                                                        <td><input type="text" ng-change="bill.fp1 = bill.km1 * 8;" class="form-control" id="km1" ng-model="bill.km1"></td>
+                                                        <td><input type="text" ng-change="setTimeD('fdt1','ftm1','tdt1','ttm1','th1', 'tm1')" class="form-control"  id="th1" ng-model="bill.th1"></td>
+                                                        <td><input type="text" class="form-control" ng-change="setTimeD('fdt1','ftm1','tdt1','ttm1','th1', 'tm1')" id="tm1" ng-model="bill.tm1"></td>
+                                                        <td><input type="text" ng-change="setTimeH('tdt1', 'ttm1', 'hd1', 'hh1', 'fdt2', 'ftm2')" class="form-control"  id="hd1" ng-model="bill.hd1" ng-value="0"></td>
+                                                        <td><input type="text" ng-change="setTimeH('tdt1', 'ttm1', 'hd1', 'hh1', 'fdt2', 'ftm2')" class="form-control" id="hh1" ng-model="bill.hh1" ng-value="0"></td>
+                                                
+                                                </tr>
+                                        </div>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt1', 'ttm1', 'hd1', 'hh1', 'fdt2', 'ftm2')" class="form-control"  id="fdt2" ng-model="bill.fdt2">
+                                                <input type="time" ng-focus="setTimeH('tdt1', 'ttm1', 'hd1', 'hh1', 'fdt2', 'ftm2')" class="form-control"  id="ftm2" ng-model="bill.ftm2"></td>
+                                                <td><input type="text" ng-focus = "bill.f2 = bill.t1;" class="form-control"  id="f2" ng-model="bill.f2"></td>
+                                                <td><input type="date" class="form-control"  id="tdt2" ng-model="bill.tdt2">
+                                                <input type="time" class="form-control"  id="ttm2" ng-model="bill.ttm2"></td>
+                                                <td><input type="text" class="form-control"  id="t2" ng-model="bill.t2"></td>
+                                                <td><select  id="mot2" ng-model="bill.mot2" >
+                                                                <option value="0"></option>
+                                                                <option value="1">Rickshaw</option> 
+                                                                <option value="2">Auto</option>
+                                                                <option value="3">Bus</option>
+                                                                <option value="4">Train</option>
+                                                                <option value="5">Metro</option>
+                                                                <option value="6">Vessel</option>
+                                                                <option value="7">Taxi</option>
+                                                                <option value="8">Air</option>
+                                                                <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp2" ng-model="bill.fp2" ></td>
+                                                <td><input type="text" ng-change="bill.fp2 = bill.km2 * 8;" class="form-control"  id="km2" ng-model="bill.km2"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt2','ftm2','tdt2','ttm2','th2', 'tm2')" class="form-control"  id="th2" ng-model="bill.th2"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt2','ftm2','tdt2','ttm2','th2', 'tm2')"  id="tm2" ng-model="bill.tm2"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt2', 'ttm2', 'hd2', 'hh2', 'fdt3', 'ftm3')" class="form-control"  id="hd2" ng-model="bill.hd2" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt2', 'ttm2', 'hd2', 'hh2', 'fdt3', 'ftm3')" class="form-control"  id="hh2" ng-model="bill.hh2" ng-value="0"></td>
+                                                
+                                       </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt2', 'ttm2', 'hd2', 'hh2', 'fdt3', 'ftm3')" class="form-control"  id="fdt3" ng-model="bill.fdt3">
+                                                <input type="time" ng-focus="setTimeH('tdt2', 'ttm2', 'hd2', 'hh2', 'fdt3', 'ftm3')" class="form-control"  id="ftm3" ng-model="bill.ftm3"></td>
+                                                <td><input type="text" ng-focus = "bill.f3 = bill.t2;" class="form-control"  id="f3" ng-model="bill.f3"></td>
+                                                <td><input type="date" class="form-control"  id="tdt3" ng-model="bill.tdt3">
+                                                <input type="time" class="form-control"  id="ttm3" ng-model="bill.ttm3"></td>
+                                                <td><input type="text" class="form-control"  id="t3" ng-model="bill.t3"></td>
+                                                <td><select  id="mot3" ng-model="bill.mot3" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp3" ng-model="bill.fp3" ></td>
+                                                <td><input type="text" ng-change="bill.fp3 =  bill.km3 * 8;" class="form-control"  id="km3" ng-model="bill.km3"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt3','ftm3','tdt3','ttm3','th3', 'tm3')" class="form-control"  id="th3" ng-model="bill.th3"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt3','ftm3','tdt3','ttm3','th3', 'tm3')"  id="tm3" ng-model="bill.tm3"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt3', 'ttm3', 'hd3', 'hh3', 'fdt4', 'ftm4')" class="form-control"  id="hd3" ng-model="bill.hd3" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt3', 'ttm3', 'hd3', 'hh3', 'fdt4', 'ftm4')" class="form-control"  id="hh3" ng-model="bill.hh3" ng-value="0"></td>
+                                
+                                        </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt3', 'ttm3', 'hd3', 'hh3', 'fdt4', 'ftm4')" class="form-control"  id="fdt4" ng-model="bill.fdt4">
+                                                <input type="time" ng-focus="setTimeH('tdt3', 'ttm3', 'hd3', 'hh3', 'fdt4', 'ftm4')" class="form-control"  id="ftm4" ng-model="bill.ftm4"></td>
+                                                <td><input type="text" ng-focus = "bill.f4 = bill.t3;" class="form-control"  id="f4" ng-model="bill.f4"></td>
+                                                <td><input type="date" class="form-control"  id="tdt4" ng-model="bill.tdt4">
+                                                <input type="time" class="form-control"  id="ttm4" ng-model="bill.ttm4"></td>
+                                                <td><input type="text" class="form-control"  id="t4" ng-model="bill.t4"></td>
+                                                <td><select  id="mot4" ng-model="bill.mot4" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp4" ng-model="bill.fp4" ></td>
+                                                <td><input type="text" ng-change="bill.fp4 = bill.km4 * 8;" class="form-control"  id="km4" ng-model="bill.km4"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt4','ftm4','tdt4','ttm4','th4', 'tm4')" class="form-control"  id="th4" ng-model="bill.th4"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt4','ftm4','tdt4','ttm4','th4', 'tm4')"  id="tm4" ng-model="bill.tm4"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt4', 'ttm4', 'hd4', 'hh4', 'fdt5', 'ftm5')" class="form-control"  id="hd4" ng-model="bill.hd4" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt4', 'ttm4', 'hd4', 'hh4', 'fdt5', 'ftm5')" class="form-control"  id="hh4" ng-model="bill.hh4" ng-value="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt4', 'ttm4', 'hd4', 'hh4', 'fdt5', 'ftm5')" class="form-control"  id="fdt5" ng-model="bill.fdt5">
+                                                <input type="time" ng-focus="setTimeH('tdt4', 'ttm4', 'hd4', 'hh4', 'fdt5', 'ftm5')" class="form-control"  id="ftm5" ng-model="bill.ftm5"></td>
+                                                <td><input type="text" ng-focus = "bill.f5 = bill.t4;" class="form-control"  id="f5" ng-model="bill.f5"></td>
+                                                <td><input type="date" class="form-control"  id="tdt5" ng-model="bill.tdt5">
+                                                <input type="time" class="form-control"  id="ttm5" ng-model="bill.ttm5"></td>
+                                                <td><input type="text" class="form-control"  id="t5" ng-model="bill.t5"></td>
+                                                <td><select  id="mot5" ng-model="bill.mot5" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp5" ng-model="bill.fp5" ></td>
+                                                <td><input type="text" ng-change="bill.fp5 = bill.km5 * 8;" class="form-control"  id="km5" ng-model="bill.km5"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt5','ftm5','tdt5','ttm5','th5', 'tm5')" class="form-control"  id="th5" ng-model="bill.th5"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt5','ftm5','tdt5','ttm5','th5', 'tm5')"  id="tm5" ng-model="bill.tm5"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt5', 'ttm5', 'hd5', 'hh5', 'fdt6', 'ftm6')" class="form-control"  id="hd5" ng-model="bill.hd5" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt5', 'ttm5', 'hd5', 'hh5', 'fdt6', 'ftm6')" class="form-control"  id="hh5" ng-model="bill.hh5" ng-value="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt5', 'ttm5', 'hd5', 'hh5', 'fdt6', 'ftm6')" class="form-control"  id="fdt6" ng-model="bill.fdt6">
+                                                <input type="time" ng-focus="setTimeH('tdt5', 'ttm5', 'hd5', 'hh5', 'fdt6', 'ftm6')" class="form-control"  id="ftm6" ng-model="bill.ftm6"></td>
+                                                <td><input type="text" ng-focus = "bill.f6 = bill.t5;" class="form-control"  id="f6" ng-model="bill.f6"></td>
+                                                <td><input type="date" class="form-control"  id="tdt6" ng-model="bill.tdt6">
+                                                <input type="time" class="form-control"  id="ttm6" ng-model="bill.ttm6"></td>
+                                                <td><input type="text" class="form-control"  id="t6" ng-model="bill.t6"></td>
+                                                <td><select  id="mot6" ng-model="bill.mot6" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp6" ng-model="bill.fp6" ></td>
+                                                <td><input type="text" ng-change="bill.fp6 = bill.km6 * 8;" class="form-control"  id="km6" ng-model="bill.km6"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt6','ftm6','tdt6','ttm6','th6', 'tm6')" class="form-control"  id="th6" ng-model="bill.th6"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt6','ftm6','tdt6','ttm6','th6', 'tm6')"  id="tm6" ng-model="bill.tm6"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt6', 'ttm6', 'hd6', 'hh6', 'fdt7', 'ftm7')" class="form-control"  id="hd6" ng-model="bill.hd6" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt6', 'ttm6', 'hd6', 'hh6', 'fdt7', 'ftm7')" class="form-control"  id="hh6" ng-model="bill.hh6" ng-value="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt6', 'ttm6', 'hd6', 'hh6', 'fdt7', 'ftm7')" class="form-control"  id="fdt7" ng-model="bill.fdt7">
+                                                <input type="time" ng-focus="setTimeH('tdt6', 'ttm6', 'hd6', 'hh6', 'fdt7', 'ftm7')" class="form-control"  id="ftm7" ng-model="bill.ftm7"></td>
+                                                <td><input type="text" ng-focus = "bill.f7 = bill.t6;" class="form-control"  id="f7" ng-model="bill.f7"></td>
+                                                <td><input type="date" class="form-control"  id="tdt7" ng-model="bill.tdt7">
+                                                <input type="time" class="form-control"  id="ttm7" ng-model="bill.ttm7"></td>
+                                                <td><input type="text" class="form-control"  id="t7" ng-model="bill.t7"></td>
+                                                <td><select  id="mot7" ng-model="bill.mot7" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp7" ng-model="bill.fp7" ></td>
+                                                <td><input type="text" ng-change="bill.fp7 = bill.km7 * 8;" class="form-control"  id="km7" ng-model="bill.km7"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt7','ftm7','tdt7','ttm7','th7', 'tm7')" class="form-control"  id="th7" ng-model="bill.th7"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt7','ftm7','tdt7','ttm7','th7', 'tm7')"  id="tm7" ng-model="bill.tm7"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt7', 'ttm7', 'hd7', 'hh7', 'fdt8', 'ftm8')" class="form-control"  id="hd7" ng-model="bill.hd7" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt7', 'ttm7', 'hd7', 'hh7', 'fdt8', 'ftm8')" class="form-control"  id="hh7" ng-model="bill.hh7" ng-value="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt7', 'ttm7', 'hd7', 'hh7', 'fdt8', 'ftm8')" class="form-control"  id="fdt8" ng-model="bill.fdt8">
+                                                <input type="time" ng-focus="setTimeH('tdt7', 'ttm7', 'hd7', 'hh7', 'fdt8', 'ftm8')" class="form-control"  id="ftm8" ng-model="bill.ftm8"></td>
+                                                <td><input type="text" ng-focus = "bill.f8 = bill.t7;" class="form-control"  id="f8" ng-model="bill.f8"></td>
+                                                <td><input type="date" class="form-control"  id="tdt8" ng-model="bill.tdt8">
+                                                <input type="time" class="form-control"  id="ttm8" ng-model="bill.ttm8"></td>
+                                                <td><input type="text" class="form-control"  id="t8" ng-model="bill.t8"></td>
+                                                <td><select  id="mot8" ng-model="bill.mot8" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp8" ng-model="bill.fp8" ></td>
+                                                <td><input type="text" ng-change="bill.fp8 = bill.km8 * 8;" class="form-control"  id="km8" ng-model="bill.km8"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt8','ftm8','tdt8','ttm8','th8', 'tm8')" class="form-control"  id="th8" ng-model="bill.th8"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt8','ftm8','tdt8','ttm8','th8', 'tm8')"  id="tm8" ng-model="bill.tm8"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt8', 'ttm8', 'hd8', 'hh8', 'fdt9', 'ftm9')" class="form-control"  id="hd8" ng-model="bill.hd8" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt8', 'ttm8', 'hd8', 'hh8', 'fdt9', 'ftm9')" class="form-control"  id="hh8" ng-model="bill.hh8" ng-value="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt8', 'ttm8', 'hd8', 'hh8', 'fdt9', 'ftm9')" class="form-control"  id="fdt9" ng-model="bill.fdt9">
+                                                <input type="time" ng-focus="setTimeH('tdt8', 'ttm8', 'hd8', 'hh8', 'fdt9', 'ftm9')" class="form-control"  id="ftm9" ng-model="bill.ftm9"></td>
+                                                <td><input type="text" ng-focus = "bill.f9 = bill.t8;" class="form-control"  id="f9" ng-model="bill.f9"></td>
+                                                <td><input type="date" class="form-control"  id="tdt9" ng-model="bill.tdt9">
+                                                <input type="time" class="form-control"  id="ttm9" ng-model="bill.ttm9"></td>
+                                                <td><input type="text" class="form-control"  id="t9" ng-model="bill.t9"></td>
+                                                <td><select  id="mot9" ng-model="bill.mot9" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp9" ng-model="bill.fp9" ></td>
+                                                <td><input type="text" ng-change="bill.fp9 = bill.km9 * 8;" class="form-control"  id="km9" ng-model="bill.km9"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt9','ftm9','tdt9','ttm9','th9', 'tm9')" class="form-control"  id="th9" ng-model="bill.th9"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt9','ftm9','tdt9','ttm9','th9', 'tm9')"  id="tm9" ng-model="bill.tm9"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt9', 'ttm9', 'hd9', 'hh9', 'fdt0', 'ftm0')" class="form-control"  id="hd9" ng-model="bill.hd9" ng-value="0"></td>
+                                                <td><input type="text" ng-change="setTimeH('tdt9', 'ttm9', 'hd9', 'hh9', 'fdt0', 'ftm0')" class="form-control"  id="hh9" ng-model="bill.hh9" ng-value="0"></td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="date" ng-focus="setTimeH('tdt9', 'ttm9', 'hd9', 'hh9', 'fdt0', 'ftm0')" class="form-control"  id="fdt0" ng-model="bill.fdt0">
+                                                <input type="time" ng-focus="setTimeH('tdt9', 'ttm9', 'hd9', 'hh9', 'fdt0', 'ftm0')" class="form-control"  id="ftm0" ng-model="bill.ftm0"></td>
+                                                <td><input type="text" ng-focus = "bill.f0 = bill.t9;" class="form-control"  id="f0" ng-model="bill.f0"></td>
+                                                <td><input type="date" class="form-control"  id="tdt0" ng-model="bill.tdt0">
+                                                <input type="time" class="form-control"  id="ttm0" ng-model="bill.ttm0"></td>
+                                                <td><input type="text" class="form-control"  id="t0" ng-model="bill.t0"></td>
+                                                <td><select  id="mot0" ng-model="bill.mot0" >
+                                                        <option value="0"></option>
+                                                        <option value="1">Rickshaw</option> 
+                                                        <option value="2">Auto</option>
+                                                        <option value="3">Bus</option>
+                                                        <option value="4">Train</option>
+                                                        <option value="5">Metro</option>
+                                                        <option value="6">Vessel</option>
+                                                        <option value="7">Taxi</option>
+                                                        <option value="8">Air</option>
+                                                        <option value="9">Other</option>
+                                                        </select>
+                                                </td>
+                                                <td><input type="text" class="form-control"  id="fp0" ng-model="bill.fp0" ></td>
+                                                <td><input type="text" ng-change="bill.fp0 = bill.km0 * 8;" class="form-control"  id="km0" ng-model="bill.km0"></td>
+                                                <td><input type="text" ng-change="setTimeD('fdt0','ftm0','tdt0','ttm0','th0', 'tm0')" class="form-control"  id="th0" ng-model="bill.th0"></td>
+                                                <td><input type="text" class="form-control" ng-change="setTimeD('fdt0','ftm0','tdt0','ttm0','th0', 'tm0')"  id="tm0" ng-model="bill.tm0"></td>
+                                                <td><input type="text"  class="form-control"  id="hd0" ng-model="bill.hd0" ng-value="0"></td>
+                                                <td><input type="text"  class="form-control"  id="hh0" ng-model="bill.hh0" ng-value="0"></td>
+                                        </tr>
+                                </table>
+                        </div>
+                        <button type="submit" class="btn btn-default">Save</button>
+                        <a href="#/tabill" class="btn btn-default">Cancel</a>
+                </div>
+                
+        </form>
+        
+    
+</div>

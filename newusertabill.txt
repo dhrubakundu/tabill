@@ -1,0 +1,7 @@
+db.tamast.insert({ uname: 'pillari',
+  pass: 'pillaris',
+  name: 'Srinivas Pillari',
+  desig: 'Senior System Analyst',
+  pay: '',
+  headqtr: 'CBI/TAFSU/Kolkata Zone' });
+

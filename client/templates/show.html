@@ -1,0 +1,311 @@
+<div id="printable" class="panel panel-default" ng-init="showTabill()">
+        
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><td colspan="5">G.A.R.-14-A[See Rules 66 (I) &amp; 90 (I) (i)]</td><td colspan="5">Sub-bill No. ______________
+                </td></tr><tr><th colspan="10"><h3>TRAVELLING ALLOWANCE BILL FOR TOUR</h3>
+                </th></tr><tr><th colspan="10"><h5>NOTE:- This bill should be prepared in duplicate-one for payment and the others as office copy</h5>
+                </th></tr><tr><th colspan="10"><h5>PART-A (To be filled up by Government servant)</h5>
+                </th></tr><tr><td colspan="1">1.</td><td colspan="9">Name :-  <b>{{mast.name}}</b></td></tr>
+                <tr></tr>
+                <tr><td colspan="1">2.</td><td colspan="6">Designation:- <b>{{mast.desig}}</b> </td><td colspan="3">3. Pay:- <b>{{mast.pay}}</b>
+                </td></tr>
+                <tr><td colspan="1">4.</td><td colspan="9">Headquarters:- <b> {{mast.headqtr}}</b>
+                </td></tr>
+                <tr><td colspan="1">5.</td><td colspan="9">Details and purpose of journey (s) performed.
+                </td></tr></tbody></table>
+        
+                <table border="1">
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><th colspan="2" width="20%" align="center">Departure</th><th colspan="2" width="20%" align="center">Arrival</th><th rowspan="2" width="10%" align="center">Mode of Travel</th><th width="10%" align="center"> Fare paid</th><th rowspan="2" width="10%" align="center"> Distance in Kms</th><th colspan="2" width="10%" align="center"> Duration of halt</th><th rowspan="2" width="20%" align="center"><b> Purpose of Journey</b></th></tr>
+                <tr><th width="5%" align="center">Date and Time</th><th width="15%" align="center">from</th><th width="5%" align="center">Date and Time</th><th width="15%" align="center">to</th><th width="10%" align="center">Rs.</th><th width="5%" align="center">Days</th><th width="5%" align="center">Hours</th></tr>
+                <tr><th align="center">1.</th><th align="center">2.</th><th align="center">3.</th><th align="center">4.</th><th align="center">5.</th><th align="center">6.</th><th align="center">7.</th><th align="center" colspan="2">8.</th><th></th><th align="center">9.</th></tr>
+                
+                <tr ng-repeat="i in [] | range:bills.nr">
+                        <td width="20" align="center"><strong style="font-size: 10px;">{{bills.fdt[i] | date:'dd/MM/yyyy'}} </strong>
+                        <br><strong style="font-size: 10px;">{{bills.ftm[i] | date:'HH:mm:ss'}}</strong></td>
+                        <td width="15" align="center"><strong style="font-size: 10px;">{{bills.f[i]}}</strong></td>
+                        <td width="20" align="center"><strong style="font-size: 10px;">{{bills.tdt[i] | date:'dd/MM/yyyy'}}</strong>
+                        <br><strong style="font-size: 10px;">{{bills.ttm[i] | date:'HH:mm:ss'}}</strong></td>
+                        <td width="15" align="center"><strong style="font-size: 10px;">{{bills.t[i]}}</strong></td>
+                        <td width="10" align="center"><strong style="font-size: 10px;">{{bills.mot[i]}}</strong></td>
+                        <td width="13" align="center"><strong style="font-size: 10px;">{{bills.fp[i]}}</strong></td>
+                        <td width="10" align="center"><strong style="font-size: 10px;">{{bills.km[i]}}</strong></td>
+                        <td width="7" align="center"><strong style="font-size: 10px;">{{bills.hd[i]}}</strong></td>
+                        <td width="5" align="center"><strong style="font-size: 10px;">{{bills.hh[i]}}</strong></td>
+                        <td ng-if="i == 0" rowspan={{bills.nr}} width="15" align="center"><strong style="font-size: 10px;">{{bills.pur}}</strong></td>
+                </tr>
+                </tbody></table>
+                
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody></tr><tr><td></td></tr><tr><td></td></tr><tr><td colspan="1">6.</td><td colspan="9">Mode of journey:-
+                </td></tr><tr><th colspan="1">(i)</th><td colspan="9">Air
+                </td></tr><tr><th colspan="1"></th><td colspan="6">(a) Exchange voucher arranged by office</td><td colspan="1"></td><td colspan="2">Yes/No.
+                </td></tr><tr><th colspan="1"></th><td colspan="9">(b) Ticket/Exchange voucher arranged by _________________
+                </td></tr><tr><td></td></tr><tr><th colspan="1">(ii)</th><td colspan="9">Rail
+                </td></tr><tr><th colspan="1"></th><td colspan="6">(a) Whether travelled by Mail/Express/Ordinary train?</td><td colspan="1"></td><td colspan="2">Yes/No.
+                </td></tr><tr><th colspan="1"></th><td colspan="6">(b) Whether return ticket was available?</td><td colspan="1"></td><td colspan="2">Yes/No.
+                </td></tr><tr><th colspan="1"></th><td colspan="9">(c) If available, whether return ticket purchased? If not, state reasons _____
+                </td></tr><tr><td colspan="10">__________________________________________________________________
+                </td></tr></tbody></table>
+                <p style="page-break-before: always;">&nbsp;</p>
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><th colspan="1">(iii)</th><td colspan="9">Road
+                </td></tr><tr><th colspan="1"></th><td colspan="9">Mode of conveyance used i.e. by Govt. transport/by taking a taxi, single seat in a
+                </td></tr><tr><th colspan="1"></th><td colspan="9">bus or other public conveyance/by sharing with another Govt. servant in car
+                </td></tr><tr><th colspan="1"></th><td colspan="9">belonging to him or to a third person, to be mentioned.
+                </td></tr><tr><td colspan="1">7.</td><td colspan="9">Dates of absent from place of halt on account of :-
+                </td></tr><tr><th colspan="1"></th><td colspan="9">(i) R H .and C.L.
+                </td></tr><tr><th colspan="1"></th><td colspan="9">(ii) Not being actually in camp on Sunday and holidays.
+                </td></tr><tr><td colspan="1">8.</td><td colspan="9">Dates on which free board and/or lodging provided by the State or any
+                </td></tr><tr><td colspan="1"></td><td colspan="9">organisation financed by State funds:-
+                </td></tr><tr><th colspan="1"></th><td colspan="9">(a) Board only
+                </td></tr><tr><th colspan="1"></th><td colspan="9">(b) Lodging only
+                </td></tr><tr><th colspan="1"></th><td colspan="9">(c) Board and lodging
+                </td></tr><tr><td colspan="1">9.</td><td colspan="9">Particulars to be furnished alongwith hotel receipt etc. in cases where higher rate
+                </td></tr><tr><td colspan="1"></td><td colspan="9">of D.A. is claimed for stay in hotel other establishments providing board and/or
+                </td></tr><tr><td colspan="1"></td><td colspan="9">lodging at scheduled tariffs-
+                </td></tr></tbody></table>
+                <table border="1">
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><th colspan="4" width="40%">Period of Stay</th><th rowspan="2" colspan="2" width="20%">Name of the hotel</th><th rowspan="2" colspan="2" width="20%"> Daily rate of Lodging charged</th><th rowspan="2" width="20%">Total Amount paid</th></tr>
+                <tr><th colspan="2" width="20%">From</th><th colspan="2" width="20%">To</th></tr>
+                <tr><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%"> &nbsp;</th><th width="20%">&nbsp;</th></tr>
+                <tr><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%"> &nbsp;</th><th width="20%">&nbsp;</th></tr>
+                <tr><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%"> &nbsp;</th><th width="20%">&nbsp;</th></tr>
+                <tr><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%"> &nbsp;</th><th width="20%">&nbsp;</th></tr>
+                <tr><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%"> &nbsp;</th><th width="20%">&nbsp;</th></tr>
+                <tr><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%"> &nbsp;</th><th width="20%">&nbsp;</th></tr>
+                <tr><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%">&nbsp;</th><th colspan="2" width="20%"> &nbsp;</th><th width="20%">&nbsp;</th></tr>
+                </tbody></table>
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><td colspan="1">10.</td><td colspan="9">Particulars of journey(s) for which higher class of accommodation than the one
+                </td></tr><tr><td colspan="1"></td><td colspan="9">to which the Government servant is entitled was used:-
+                </td></tr></tbody></table>
+                <table border="1">
+                <colgroup><col width="50">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                <col width="90">
+                </colgroup><tbody><tr><th rowspan="2">Date</th><th colspan="2">Period of Stay &amp; Places</th><th rowspan="2" width="20%">Mode of conveyance used</th><th rowspan="2" width="20%">Class to which entitled</th><th rowspan="2" width="20%">Class to which travelled</th><th rowspan="2" width="20%">Fare of the entitled class/Rs</th></tr>
+                <tr><th width="20%">From</th><th width="20%">To</th></tr>
+                <tr><th>1.</th><th>2.</th><th>3.</th><th>4.</th><th>5.</th><th>6.</th><th>7.</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                </tbody></table>
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><td colspan="10">If the journey(s) by higher class accommodation has been performed with the approval
+                </td></tr><tr><td colspan="10">of the competent authority. No. and date of sanction may be quoted. _______________
+                </td></tr></tbody></table>
+                <p style="page-break-before: always;">&nbsp;</p>
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><td colspan="1">11.</td><td colspan="9">Details of Journey (s) performed by road between places connected by rail:-
+                </td></tr></tbody></table>
+                <table border="1">
+                <colgroup><col width="90">
+                <col width="150">
+                <col width="150">
+                <col width="150">
+                <col width="50">
+                </colgroup><tbody><tr><th rowspan="2" width="20%">Date</th><th colspan="2" width="50%">Name of places</th><th colspan="2" width="30%">Fare paid</th></tr>
+                <tr><th width="25%">From</th><th width="25%">To</th><th width="20%">Rs</th><th width="10%">Ps</th></tr>
+                <tr><th width="20%">1.</th><th width="25%">2.</th><th width="25%">3.</th><th colspan="2" width="30%">4.</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+                </tbody></table>
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><td colspan="1">12.</td><td colspan="9">Amount of T.A. advance. If any, drawn.
+                </td></tr><tr><td colspan="1"></td><td colspan="9">Certified that the information as given above, is true to the best of my
+                </td></tr><tr><td colspan="10">knowledge and belief.
+                </td></tr></tbody></table>
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td colspan="6" width="60%"><b>Date</b></td><td colspan="4" width="40%"><b align="right">Signature of the Govt. servant</b>
+                </td></tr><tr><td colspan="10" width="100%">__________________________________________________________________________________________
+                </td></tr><tr><td colspan="10" width="100%"><b>PART-B (To be filled in the Bill Section)</b>
+                </td></tr><tr><td colspan="1">1.</td><td colspan="9">The net entitlement on account of travelling allowance works out to Rs. ________
+                </td></tr><tr><td colspan="1"></td><td colspan="9">as detailed below:-
+                </td></tr><tr><td colspan="1"></td><td colspan="1">a)</td><td colspan="8">Railway/ air/ bus /steamer fare Rs. ______________
+                </td></tr><tr><td colspan="1"></td><td colspan="1">b)</td><td colspan="8">Road mileage for _________ Kms @ Rs. ___________ Per/Km.
+                </td></tr><tr><td colspan="1"></td><td colspan="1">c)</td><td colspan="8">Daily allowance
+                </td></tr><tr><td colspan="1"></td><td colspan="1"></td><td colspan="1">(i)</td><td colspan="7">____________Days @ Rs. _____________ /Per Days ________________
+                </td></tr><tr><td colspan="1"></td><td colspan="1"></td><td colspan="1">(ii)</td><td colspan="7">____________Days @ Rs. _____________ /Per Days ________________
+                </td></tr><tr><td colspan="1"></td><td colspan="1"></td><td colspan="1">(iii)</td><td colspan="7">____________Days @ Rs. _____________ /Per Days ________________
+                </td></tr><tr><td colspan="10" width="100%" align="right">Rs. ________________
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td colspan="1"></td><td colspan="1">d)</td><td colspan="8" align="right">Actual expenses Rs. ________________
+                </td></tr><tr><td colspan="10" width="100%" align="right">Gross Amount &nbsp;&nbsp; Rs. ________________
+                </td></tr><tr><td colspan="1"></td><td colspan="1">e)</td><td colspan="8">Less amount of T.A. advance. If any, drawn vide
+                </td></tr><tr><td colspan="1"></td><td colspan="1"></td><td colspan="5">Voucher No. ______________ Dated ____________</td><td colspan="3" align="right">Rs. ________________
+                </td></tr><tr><td colspan="10" width="100%" align="right">Net amount &nbsp;&nbsp; Rs. ________________
+                </td></tr><tr><td colspan="1">2.</td><td colspan="9">The expenditure is debitable to ______________________
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td colspan="1"></td><td colspan="6">Initial Bill Clerk</td><td colspan="3" align="right">Signature of D.D.O
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td colspan="1"></td><td colspan="6"></td><td colspan="3" align="right">Countersigned
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td colspan="1"></td><td colspan="5"></td><td colspan="4" align="right">Signature of Controlling Officer
+                </td></tr></tbody></table>
+                <p style="page-break-before: always;">&nbsp;</p>
+                <table>
+                <colgroup><col width="50">
+                <col width="65">
+                <col width="50">
+                <col width="80">
+                <col width="70">
+                <col width="70">
+                <col width="70">
+                <col width="30">
+                <col width="25">
+                <col width="100">
+                </colgroup><tbody><tr><th colspan="10" width="100%"><u>CERTIFICATE FOR TOUR T.A. BILLS</u>
+                </th></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td colspan="1">1.</td><td colspan="9">Certified that I/my family was neither allowed free transit by Rail under free pass or
+                </td></tr><tr><td colspan="1"></td><td colspan="9">otherwise provided with. means of communication at expense of the state or local round
+                </td></tr><tr><td colspan="1"></td><td colspan="9">journey for the which T.A. has been claimed in the bill.
+                </td></tr><tr><td colspan="1">2.</td><td colspan="9">Certified that I/my family actually travelled by the class for the T.A. claimed in this bill.
+                </td></tr><tr><td colspan="1">3.</td><td colspan="9">Certified that number of kilometers shown in this bill is in accordance with the poly
+                </td></tr><tr><td colspan="1"></td><td colspan="9">metenal tables of the establishment.
+                </td></tr><tr><td colspan="1">4.</td><td colspan="9">Certified that journey on _________________ was performed by Mail/Express train in
+                </td></tr><tr><td colspan="1"></td><td colspan="9">the interest of public service.
+                </td></tr><tr><td colspan="1">5.</td><td colspan="9">Certified that I was actually not merely contrusively in camp on Sundays and holidays
+                </td></tr><tr><td colspan="1"></td><td colspan="9">for which daily allowance is claimed.
+                </td></tr><tr><td colspan="1">6.</td><td colspan="9">Certified that I was not absent on casual leave during the period for which daily
+                </td></tr><tr><td colspan="1"></td><td colspan="9">allowance has been claimed.
+                </td></tr><tr><td colspan="1">7.</td><td colspan="9">Certified that during my halt at __________________ from ________________
+                </td></tr><tr><td colspan="1"></td><td colspan="9">to __________________ while on inspection duty continue to be in our expenditure
+                </td></tr><tr><td colspan="1"></td><td colspan="9">after the first 10 days.
+                </td></tr><tr><td colspan="1">8.</td><td colspan="9">Certified that I. did not perform. the road journey for which the kilometer allowance has
+                </td></tr><tr><td colspan="1"></td><td colspan="9">been claimed at the higher rates prescribed in Rule 46 of the supplementary Rule by
+                </td></tr><tr><td colspan="1"></td><td colspan="9">taking a single sent in a taxi motor or mini bus or lorry plying for hire.
+                </td></tr><tr><td colspan="1">9.</td><td colspan="9">Certified that I incurred running expenses on a car in this journey.
+                </td></tr><tr><td colspan="1">10.</td><td colspan="9">Certified that the road journeys for which kilometer has been claimed at the higher
+                </td></tr><tr><td colspan="1"></td><td colspan="9">prescribed in supplementary Rule 46 were performed in my own car.
+                </td></tr><tr><td colspan="1">11.</td><td colspan="9">Certified that the road journeys for which mileage is claimed were performed by road
+                </td></tr><tr><td colspan="1"></td><td colspan="9">but were charged by rail. The number of kilometers actually travelled by road being.
+                </td></tr><tr><td colspan="1">12.</td><td colspan="9">Certified that the family members for whom T.A. has been claimed actually travelled
+                </td></tr><tr><td colspan="1"></td><td colspan="9">with me or followed me on transfer.
+                </td></tr><tr><td colspan="1">13.</td><td colspan="9">Certified that actual expenses incurred as cost of transportation of personal was not less
+                </td></tr><tr><td colspan="1"></td><td colspan="9">than the sum claimed in the bill.
+                </td></tr><tr><td colspan="1">14.</td><td colspan="9">Certified that I have transported ___________Kg ________gms of luggage on my
+                </td></tr><tr><td colspan="1"></td><td colspan="9">transfer from _______________________ to _________________________
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><th colspan="4" align="left">Countersigned</th><th colspan="6" align="right">Signature of the claimant
+                </th></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;
+                </td></tr><tr><th colspan="10">(Signature &amp; Designation of the controlling officer)
+                </th></tr></tbody></table>
+</div>
+<button ng-click="printDiv('printable');">Print</button>
